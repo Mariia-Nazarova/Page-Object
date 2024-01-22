@@ -6,8 +6,7 @@ import lombok.val;
 import lombok.var;
 import ru.netology.web.data.DataHelper;
 
-import static com.codeborne.selenide.Condition.attribute;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -21,14 +20,19 @@ public class DashboardPage {
         heading.shouldBe(visible);
     }
 
+    public int getCardBalance(DataHelper.CardInfo cardInfo){
+        val text = cards.findBy(text(cardInfo.getCardNumber().substring(15))).getText();
+        return extractBalance(text);
+    }
+
     public TransferPage selectCardToTransfer(DataHelper.CardInfo cardInfo){
         cards.findBy(attribute("data-test-id",cardInfo.getTestId())).$("button"). click();
         return new TransferPage();
     }
     private int extractBalance(String text){
-        var start = text.indexOf(balanceStart);
-        var finish = text.indexOf(balanceFinish);
-        var value = text.substring(start + balanceStart.length(),finish);
+        val start = text.indexOf(balanceStart);
+        val finish = text.indexOf(balanceFinish);
+        val value = text.substring(start + balanceStart.length(),finish);
         return Integer.parseInt(value);
     }
 
