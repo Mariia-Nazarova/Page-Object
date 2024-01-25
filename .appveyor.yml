@@ -10,7 +10,7 @@ build: off # будем использовать свой скрипт сбор�
 
 install:
   # запускаем SUT (& означает, что в фоновом режиме не блокируем терминал для запуска тестов)
-  - java -jar ./artifacts/app-ibank-build-for-testers.jar
+  - java -jar ./artifacts/app-ibank-build-for-testers.jar &
   - chmod +x gradlew
 
 build_script:
