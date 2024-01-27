@@ -11,10 +11,10 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class DashboardPage {
-    private final String balanceStart = "баланс";
-    private final String balanceFinish = "р.";
+    private final String balanceStart = "баланс: ";
+    private final String balanceFinish = " р.";
     private final SelenideElement heading = $("[data-test-id=dashboard]");
-    private final ElementsCollection cards= $$ (".list__item div");
+    private ElementsCollection cards= $$ (".list__item div");
 
     public DashboardPage (){
         heading.shouldBe(visible);
